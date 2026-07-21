@@ -37,19 +37,33 @@ class StorePublicLeadRequest extends FormRequest
             'utm_medium' => ['nullable', 'string', 'max:120'],
             'utm_campaign' => ['nullable', 'string', 'max:160'],
             'website_url' => ['nullable', 'prohibited'],
+            'lang' => ['nullable', 'in:vi,en'],
         ];
     }
 
     public function messages(): array
     {
         return [
-            'full_name.required' => 'Vui lòng nhập họ và tên.',
-            'phone.required' => 'Vui lòng nhập số điện thoại.',
-            'phone.regex' => 'Số điện thoại chưa đúng định dạng.',
-            'email.email' => 'Email chưa đúng định dạng.',
-            'interest.required' => 'Vui lòng chọn nhu cầu quan tâm.',
-            'consent.accepted' => 'Vui lòng đồng ý để AXIRO liên hệ tư vấn.',
-            'website_url.prohibited' => 'Yêu cầu không hợp lệ.',
+            'full_name.required' => __('public_leads.validation.full_name_required'),
+            'full_name.max' => __('public_leads.validation.full_name_max'),
+            'phone.required' => __('public_leads.validation.phone_required'),
+            'phone.max' => __('public_leads.validation.phone_max'),
+            'phone.regex' => __('public_leads.validation.phone_regex'),
+            'email.email' => __('public_leads.validation.email_email'),
+            'email.max' => __('public_leads.validation.email_max'),
+            'company_name.max' => __('public_leads.validation.company_name_max'),
+            'job_title.max' => __('public_leads.validation.job_title_max'),
+            'company_size.max' => __('public_leads.validation.company_size_max'),
+            'interest.required' => __('public_leads.validation.interest_required'),
+            'interest.max' => __('public_leads.validation.interest_max'),
+            'message.max' => __('public_leads.validation.message_max'),
+            'consent.accepted' => __('public_leads.validation.consent_accepted'),
+            'page_url.url' => __('public_leads.validation.page_url_url'),
+            'page_url.max' => __('public_leads.validation.page_url_max'),
+            'utm_source.max' => __('public_leads.validation.utm_source_max'),
+            'utm_medium.max' => __('public_leads.validation.utm_medium_max'),
+            'utm_campaign.max' => __('public_leads.validation.utm_campaign_max'),
+            'website_url.prohibited' => __('public_leads.validation.website_url_prohibited'),
         ];
     }
 }

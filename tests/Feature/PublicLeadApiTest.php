@@ -26,6 +26,7 @@ class PublicLeadApiTest extends TestCase
             'interest' => 'Tư vấn triển khai AXIRO',
             'message' => 'Tôi muốn được tư vấn.',
             'consent' => true,
+            'lang' => 'vi',
             'page_url' => 'https://axiro.vn/#contact',
             'utm_source' => 'test',
         ]);
@@ -53,5 +54,30 @@ class PublicLeadApiTest extends TestCase
         $this->postJson('/api/v1/public/leads', [])
             ->assertUnprocessable()
             ->assertJsonValidationErrors(['full_name', 'phone', 'interest', 'consent']);
+    }
+
+    public function test_it_returns_english_success_message_when_requested(): void
+    {
+        Mail::fake();
+
+        $this->postJson('/api/v1/public/leads', [
+            'full_name' => 'John Smith',
+            'phone' => '0901234567',
+            'interest' => 'AXIRO implementation consulting',
+            'consent' => true,
+            'lang' => 'en',
+        ])
+            ->assertCreated()
+            ->assertJsonPath('message', 'AXIRO has received your request. Our consulting team will contact you as soon as possible.');
+    }
+
+    public function test_it_returns_english_validation_messages_when_requested(): void
+    {
+        $this->postJson('/api/v1/public/leads', ['lang' => 'en'])
+            ->assertUnprocessable()
+            ->assertJsonPath('errors.full_name.0', 'Please enter your full name.')
+            ->assertJsonPath('errors.phone.0', 'Please enter your phone number.')
+            ->assertJsonPath('errors.interest.0', 'Please select an area of interest.')
+            ->assertJsonPath('errors.consent.0', 'Please agree that AXIRO may contact you.');
     }
 }

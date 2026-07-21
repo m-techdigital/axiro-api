@@ -14,7 +14,7 @@ class PublicLeadController extends Controller
     public function __invoke(StorePublicLeadRequest $request): JsonResponse
     {
         $lead = PublicLead::create([
-            ...$request->safe()->except('website_url'),
+            ...$request->safe()->except('website_url', 'lang'),
             'ip_address' => $request->ip(),
             'user_agent' => substr((string) $request->userAgent(), 0, 1024),
         ]);
@@ -25,7 +25,7 @@ class PublicLeadController extends Controller
         $lead->forceFill(['mailed_at' => now()])->save();
 
         return response()->json([
-            'message' => 'AXIRO đã nhận thông tin. Đội ngũ tư vấn sẽ liên hệ lại trong thời gian sớm nhất.',
+            'message' => __('public_leads.success'),
         ], 201);
     }
 }

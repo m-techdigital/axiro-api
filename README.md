@@ -23,12 +23,15 @@ Payload:
   "interest": "Tư vấn triển khai AXIRO",
   "message": "Tôi muốn được tư vấn.",
   "consent": true,
+  "lang": "vi",
   "page_url": "https://axiro.vn/#contact",
   "utm_source": "google",
   "utm_medium": "cpc",
   "utm_campaign": "launch"
 }
 ```
+
+`lang` nhận `vi` hoặc `en`. API cũng đọc header `X-Locale` và `Accept-Language`; giá trị trong body được ưu tiên. Response và validation message sẽ trả theo ngôn ngữ tương ứng.
 
 Response thành công:
 
