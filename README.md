@@ -96,8 +96,18 @@ CORS_ALLOWED_ORIGINS=https://axiro.vn,https://www.axiro.vn,http://localhost:5173
 
 ## Deploy Notes
 
+- Subdomain/domain chạy API phải trỏ document root vào thư mục `public/` của Laravel.
+- Trên shared hosting/cPanel, MySQL/MariaDB có thể giới hạn key length thấp hơn local. Migration `failed_jobs` đã giới hạn riêng `connection` và `queue` để tránh lỗi `Specified key was too long`.
 - Chạy `php artisan migrate --force`.
 - Chạy `php artisan config:cache`.
 - Set `APP_ENV=production`, `APP_DEBUG=false`.
 - Set `APP_URL` đúng domain API.
 - FE chỉ cần set `VITE_API_URL=https://your-api-domain/api/v1`.
+
+Nếu đang setup lần đầu và migration đã fail giữa chừng trên database rỗng, có thể chạy lại:
+
+```bash
+php artisan migrate:fresh --force
+php artisan config:clear
+php artisan config:cache
+```
