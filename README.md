@@ -34,13 +34,7 @@ Response thành công:
 
 ```json
 {
-  "message": "AXIRO đã nhận thông tin. Đội ngũ tư vấn sẽ liên hệ lại trong thời gian sớm nhất.",
-  "data": {
-    "id": 1,
-    "full_name": "Nguyen Van A",
-    "interest": "Tư vấn triển khai AXIRO",
-    "created_at": "2026-07-21T07:41:59.000000Z"
-  }
+  "message": "AXIRO đã nhận thông tin. Đội ngũ tư vấn sẽ liên hệ lại trong thời gian sớm nhất."
 }
 ```
 

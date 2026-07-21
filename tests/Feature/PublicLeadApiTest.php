@@ -32,8 +32,8 @@ class PublicLeadApiTest extends TestCase
 
         $response
             ->assertCreated()
-            ->assertJsonPath('data.full_name', 'Nguyen Van A')
-            ->assertJsonPath('data.interest', 'Tư vấn triển khai AXIRO');
+            ->assertJsonPath('message', 'AXIRO đã nhận thông tin. Đội ngũ tư vấn sẽ liên hệ lại trong thời gian sớm nhất.')
+            ->assertJsonMissingPath('data');
 
         $this->assertDatabaseHas('public_leads', [
             'full_name' => 'Nguyen Van A',

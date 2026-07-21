@@ -26,12 +26,6 @@ class PublicLeadController extends Controller
 
         return response()->json([
             'message' => 'AXIRO đã nhận thông tin. Đội ngũ tư vấn sẽ liên hệ lại trong thời gian sớm nhất.',
-            'data' => [
-                'id' => $lead->id,
-                'full_name' => $lead->full_name,
-                'interest' => $lead->interest,
-                'created_at' => $lead->created_at?->toISOString(),
-            ],
         ], 201);
     }
 }
